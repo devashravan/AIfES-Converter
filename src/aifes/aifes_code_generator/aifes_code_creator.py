@@ -13,7 +13,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import os
-from pkg_resources import resource_filename
+from importlib.resources import files
 from ..support.aifes_model import AifesType
 from ..support.support_functions import flatten_weights, create_c_array_str
 from ..model_converter.support_model_conversion_q7 import str_flatbuffer_c_style
@@ -146,7 +146,7 @@ class AifesCodeGenerator:
                     str(self._aifes_model.aifes_layer_count), ', '.join(map(str, aifes_fnn_structure)),
                     ', '.join(map(str, aifes_fnn_activations)), name_weights)
 
-        f_template = open(resource_filename(__name__, "templates/aifes_express/aifes_e_f32_fnn.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes_express/aifes_e_f32_fnn.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_e_f32_fnn.h", 'w')
 
         for line in f_template:
@@ -169,7 +169,7 @@ class AifesCodeGenerator:
         checkWords = "PLACEHOLDER_WEIGHTS"
         repWords = weights
 
-        f_template = open(resource_filename(__name__, "templates/aifes_express/aifes_e_f32_weights.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes_express/aifes_e_f32_weights.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_e_f32_weights.h", 'w')
 
         for line in f_template:
@@ -196,7 +196,7 @@ class AifesCodeGenerator:
                     str(self._aifes_model.aifes_layer_count), ', '.join(map(str, aifes_fnn_structure)),
                     ', '.join(map(str, aifes_fnn_activations)))
 
-        f_template = open(resource_filename(__name__, "templates/aifes_express/aifes_e_q7_fnn.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes_express/aifes_e_q7_fnn.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_e_q7_fnn.h", 'w')
 
         for line in f_template:
@@ -221,7 +221,7 @@ class AifesCodeGenerator:
         checkWords = "PLACEHOLDER_WEIGHTS"
         repWords = weights
 
-        f_template = open(resource_filename(__name__, "templates/aifes_express/aifes_e_q7_weights.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes_express/aifes_e_q7_weights.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_e_q7_weights.h", 'w')
 
         for line in f_template:
@@ -278,7 +278,7 @@ class AifesCodeGenerator:
                     weights_name,
                     cmsis_include)
 
-        f_template = open(resource_filename(__name__, "templates/aifes/aifes_f32_fnn.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes/aifes_f32_fnn.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_f32_fnn.h", 'w')
 
         for line in f_template:
@@ -301,7 +301,7 @@ class AifesCodeGenerator:
         checkWords = "PLACEHOLDER_WEIGHTS"
         repWords = weights
 
-        f_template = open(resource_filename(__name__, "templates/aifes/aifes_f32_weights.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes/aifes_f32_weights.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_f32_weights.h", 'w')
 
         for line in f_template:
@@ -347,7 +347,7 @@ class AifesCodeGenerator:
                     str(q_params_layers[-1][0]), str(q_params_layers[-1][1]),
                     cmsis_include)
 
-        f_template = open(resource_filename(__name__, "templates/aifes/aifes_q7_fnn.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes/aifes_q7_fnn.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_q7_fnn.h".format(DTYPE=dtype_str), 'w')
 
         for line in f_template:
@@ -372,7 +372,7 @@ class AifesCodeGenerator:
         checkWords = "PLACEHOLDER_WEIGHTS"
         repWords = weights
 
-        f_template = open(resource_filename(__name__, "templates/aifes/aifes_q7_weights.h"), 'r')
+        f_template = open(files(__name__).joinpath("templates/aifes/aifes_q7_weights.h"), 'r')
         f_destination = open(self._destination_path + "/aifes_q7_weights.h", 'w')
 
         for line in f_template:
