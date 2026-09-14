@@ -56,7 +56,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
 
-    python_requires=">=3.7, <3.10",
+    python_requires=">=3.7",
 
     install_requires=[
                       "numpy>=1.19",
